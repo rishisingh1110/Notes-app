@@ -9,13 +9,16 @@ const Edit = ({ id, note, setShowEditBox, setDatam }) => {
     e.preventDefault();
     if (editedValue.split(" ").length <= 100) {
       const latestDateTime = new Date();
-      axios.patch("http://localhost:3001/notes/" + id, {
-        note: editedValue,
-        dateTime: latestDateTime.toLocaleString(),
-      });
+      axios.patch(
+        "https://notes-app-json-server-rishi.herokuapp.com/notes/" + id,
+        {
+          note: editedValue,
+          dateTime: latestDateTime.toLocaleString(),
+        }
+      );
 
       axios
-        .get("http://localhost:3001/notes")
+        .get("https://notes-app-json-server-rishi.herokuapp.com/notes")
         .then((res) => setDatam(res.data));
 
       setShowEditBox(false);
@@ -54,7 +57,9 @@ const Note = ({ id, username, note, dateTime, setDatam }) => {
     setShowEditBox(true);
   };
   const handleDelete = () => {
-    axios.delete("http://localhost:3001/notes/" + id);
+    axios.delete(
+      "https://notes-app-json-server-rishi.herokuapp.com/notes/" + id
+    );
   };
   return showEditBox ? (
     <Edit

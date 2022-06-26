@@ -16,7 +16,7 @@ function App() {
     setLoading(true);
 
     axios
-      .get("http://localhost:3001/notes")
+      .get("https://notes-app-json-server-rishi.herokuapp.com/notes")
       .then((res) => setDatam(res.data))
       .catch((err) => console.log(err));
 

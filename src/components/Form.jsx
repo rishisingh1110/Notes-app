@@ -10,15 +10,17 @@ const Form = ({ usernam, setDatam, setUsername, setLogin }) => {
     e.preventDefault();
     if (editedValue.split(" ").length <= 100) {
       const latestDateTime = new Date();
-      axios.post("http://localhost:3001/notes/", {
+      axios.post("https://notes-app-json-server-rishi.herokuapp.com/notes", {
         username: usernam,
         note: editedValue,
         dateTime: latestDateTime.toLocaleString(),
       });
 
       axios
-        .get("http://localhost:3001/notes")
+        .get("https://notes-app-json-server-rishi.herokuapp.com/notes")
         .then((res) => setDatam(res.data));
+
+      setEditedValue("");
     } else {
       alert("Word limit : 100 words only");
     }
